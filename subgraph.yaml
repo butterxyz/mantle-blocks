@@ -1,0 +1,26 @@
+specVersion: 0.0.5
+description: Indexing individual Mantle block data
+repository: https://github.com/butterxyz/mantle-blocks
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: V3Factory
+    network: mainnet
+    # Source doesn't matter, this is just listening for blocks
+    source:
+      address: '0xEECa0a86431A7B42ca2Ee5F479832c3D4a4c2644'
+      abi: Factory
+      startBlock: 16966090
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Block
+      abis:
+        - name: Factory
+          file: ./abis/factory.json
+      blockHandlers:
+        - handler: handleBlock
+      file: ./src/mappings/blocks.ts

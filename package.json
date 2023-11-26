@@ -1,0 +1,17 @@
+{
+  "name": "mantle-blocks",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "create-local": "graph create butterxyz/mantle-blocks --node http://127.0.0.1:8020",
+    "remove-local": "graph remove --node http://localhost:8020/ butterxyz/mantle-blocks",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 butterxyz/mantle-blocks subgraph.yaml",
+    "redeploy-local": "yarn codegen; yarn build; yarn remove-local; yarn create-local; yarn deploy-local",
+    "start:node": "rm -rf ./graph_data && docker-compose up -d"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.51.2",
+    "@graphprotocol/graph-ts": "^0.31.0"
+  }
+}
